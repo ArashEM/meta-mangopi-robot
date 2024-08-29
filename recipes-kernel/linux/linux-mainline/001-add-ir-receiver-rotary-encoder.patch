@@ -1,0 +1,27 @@
+diff --git a/arch/arm/boot/dts/allwinner/sun8i-t113s-mangopi-mq-r-t113.dts b/arch/arm/boot/dts/allwinner/sun8i-t113s-mangopi-mq-r-t113.dts
+index 8b3a753..fdd2d26 100644
+--- a/arch/arm/boot/dts/allwinner/sun8i-t113s-mangopi-mq-r-t113.dts
++++ b/arch/arm/boot/dts/allwinner/sun8i-t113s-mangopi-mq-r-t113.dts
+@@ -15,6 +15,22 @@
+ 	aliases {
+ 		ethernet0 = &rtl8189ftv;
+ 	};
++
++	ir-receiver {
++		compatible = "gpio-ir-receiver";
++		gpios = <&pio 1 2 GPIO_ACTIVE_LOW>; 		/* PB2 */
++		linux,autosuspend-period = <125>;
++	};
++
++	rotary@0 {
++			compatible = "rotary-encoder";
++			gpios = <&pio 1 6 GPIO_ACTIVE_HIGH>, 	/* PB6 */
++				<&pio 1 7 GPIO_ACTIVE_HIGH>; 	/* PB7 */
++			linux,axis = <0>; 			/* REL_X */
++			rotary-encoder,encoding = "gray";
++			rotary-encoder,relative-axis;
++			rotary-encoder,steps-per-period = <2>;
++	};
+ };
+ 
+ &cpu0 {
