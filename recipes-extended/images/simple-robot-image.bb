@@ -22,10 +22,12 @@ CONNECTIVITY_TOOLS += "\
     usbutils \
     libusbgx \
     lirc \
+    ir-keytable \
 "
 
 IO_TOOLS += "\
     libgpiod \
+    libgpiod-tools \
 "
 
 MISC_TOOLS += " \
