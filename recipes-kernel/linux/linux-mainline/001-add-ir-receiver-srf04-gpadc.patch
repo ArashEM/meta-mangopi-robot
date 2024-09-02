@@ -1,8 +1,8 @@
 diff --git a/arch/arm/boot/dts/allwinner/sun8i-t113s-mangopi-mq-r-t113.dts b/arch/arm/boot/dts/allwinner/sun8i-t113s-mangopi-mq-r-t113.dts
-index 8b3a753..fdd2d26 100644
+index 8b3a753..565a129 100644
 --- a/arch/arm/boot/dts/allwinner/sun8i-t113s-mangopi-mq-r-t113.dts
 +++ b/arch/arm/boot/dts/allwinner/sun8i-t113s-mangopi-mq-r-t113.dts
-@@ -15,6 +15,22 @@
+@@ -15,6 +15,19 @@
  	aliases {
  		ethernet0 = &rtl8189ftv;
  	};
@@ -13,15 +13,26 @@ index 8b3a753..fdd2d26 100644
 +		linux,autosuspend-period = <125>;
 +	};
 +
-+	rotary@0 {
-+			compatible = "rotary-encoder";
-+			gpios = <&pio 1 6 GPIO_ACTIVE_HIGH>, 	/* PB6 */
-+				<&pio 1 7 GPIO_ACTIVE_HIGH>; 	/* PB7 */
-+			linux,axis = <0>; 			/* REL_X */
-+			rotary-encoder,encoding = "gray";
-+			rotary-encoder,relative-axis;
-+			rotary-encoder,steps-per-period = <2>;
++	proximity {
++		compatible = "devantech,srf04";
++		trig-gpios = <&pio 1 6 GPIO_ACTIVE_HIGH>; 	/* PB6 */
++		echo-gpios = <&pio 1 7 GPIO_ACTIVE_HIGH>; 	/* PB7 */
 +	};
++
  };
  
  &cpu0 {
+@@ -33,3 +46,13 @@
+ 		interrupt-names = "host-wake";
+ 	};
+ };
++
++&gpadc {
++	status = "okay";
++	#address-cells = <1>;
++	#size-cells = <0>;
++	channel@0 {
++        reg = <0>;
++    };
++};
++
